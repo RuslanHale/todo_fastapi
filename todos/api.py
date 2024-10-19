@@ -1,10 +1,11 @@
-from fastapi import APIRouter
+from fastapi import FastAPI
 from todo import todo_router
 
-router = APIRouter()
+app = FastAPI()
 
 
-@router.get("/hello")
-async def say_hello() -> dict:
-    return { "message": "Hello!" }
+@app.get("/")
+async def welcome() -> dict:
+    return { "message": "Hello, World!" }
 
+app.include_router(todo_router)
